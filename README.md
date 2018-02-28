@@ -36,6 +36,23 @@ Every response contains links to related resources or actions (like changing mod
 I am intentionally adding one offer to inital dao service, you can query it with id  `"6adbee8d-dd37-4828-8656-8404a66680ef"`.
 Or just query `http://localhost:9999/offers` to get list of offers.
 
+## JSON example
+You can use json snipped below when playing with endpoints which require payload like `POST` and `PUT` 
+
+```
+{
+  "id": "6adbee8d-dd37-4828-8656-8404a66680ef",
+  "name": "google home",
+  "price": {
+    "value": 49.124,
+    "currency": "GBP"
+  },
+  "moderationStatus": "APPROVED",
+  "startDate": "2018-02-27",
+  "expiryDate": "2019-02-27"
+}
+```
+
 
 ## Integration tests
 
