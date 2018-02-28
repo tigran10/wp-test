@@ -191,19 +191,18 @@ public class OfferResourceTest {
     public void putWillReturnResponse() throws Exception {
 
         //given
-        given(OFFER_DAO.updateOffer(IPHONE)).willReturn(IPHONE);
+        given(OFFER_DAO.updateOffer(GOOGLE_HOME)).willReturn(GOOGLE_HOME);
         given(OFFER_DAO.findOfferById(IPHONE_ID)).willReturn(Optional.of(IPHONE));
-
 
         //when
         OfferResponse response = resources.client()
                 .target(OFFERS_ENDPOINT_URL + "/" + IPHONE_ID.toIdString())
                 .request()
                 .accept(MediaType.APPLICATION_JSON)
-                .put(Entity.json(fixture("fixtures/googlehome.json")), OfferResponse.class);
+                .put(Entity.json(GOOGLE_HOME), OfferResponse.class);
 
         //then
-        assertThat(response.getOfferDetails()).isEqualTo(IPHONE);
+        assertThat(response.getOfferDetails().getName()).isEqualTo("google home");
 
     }
 
