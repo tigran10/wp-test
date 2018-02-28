@@ -4,18 +4,25 @@ This is a small microservice which provides somple CRUD operations and moderatio
 
 ## Technologies
 I was thinking to go with good old `spring boot`, but then changed my mind and tried with `dropwizard` as an alternative lightweight framework. 
-I have not used any in memory db, to not have yet another dependency and layer in the test. Instead there is a simple `dao` like interface with simple implementation.
+I have not used any in memory db, to not have yet another dependency and layer in the test. Instead there is a simple `dao` like interface with simple implementation. I have included `Dockerfile` for convinience, but havent made it part of my gradle need yet.
 
 
 ## Build
 
 To build a shadow jar use command below
 
-```./gradlew shadowJar```
+```./gradlew shadowJar``` or ```make package-exec```
+
+## Build Docker
+To have things packaged into docker image run makefile command below
+
+```make build-docker``` 
 
 ## RUN
 Use two commands below to run fat jar
 ```./gradlew startServer``` and ```./gradlew stopServer``` 
+
+And for docker ```make run-docker``` to run it. It will map `9999` port from container to the host.
 
 open `localhost:9999/swagger`
 
