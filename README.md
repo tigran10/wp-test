@@ -54,9 +54,11 @@ You can use json snipped below when playing with endpoints which require payload
 ```
 ## Offer Details
 
-*moderationStatus* - It is possible to mark offer as `APPROVED` `PENDING` or `REJECTED`. 
-*active* -  This field tells the client if the offer is currently `active` or not. It takes into considiration the moderationsStatus and start/expiry dates.
-*displayValue* - its a formatted version for display. 
+- *moderationStatus* - It is possible to mark offer as `APPROVED` `PENDING` or `REJECTED`. 
+
+- *active* -  This field tells the client if the offer is currently `active` or not. It takes into considiration the moderationsStatus and start/expiry dates.
+
+- *displayValue* - its a formatted version for display. 
 
 The rest is pretty standard 
 
