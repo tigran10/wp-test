@@ -4,18 +4,25 @@ This is a small microservice which provides somple CRUD operations and moderatio
 
 ## Technologies
 I was thinking to go with good old `spring boot`, but then changed my mind and tried with `dropwizard` as an alternative lightweight framework. 
-I have not used any in memory db, to not have yet another dependency and layer in the test. Instead there is a simple `dao` like interface with simple implementation.
+I have not used any in memory db, to not have yet another dependency and layer in the test. Instead there is a simple `dao` like interface with simple implementation. I have included `Dockerfile` for convinience, but havent made it part of my gradle need yet.
 
 
 ## Build
 
 To build a shadow jar use command below
 
-```./gradlew shadowJar```
+```./gradlew shadowJar``` or ```make package-exec```
+
+## Build Docker
+To have things packaged into docker image run makefile command below
+
+```make build-docker``` 
 
 ## RUN
 Use two commands below to run fat jar
 ```./gradlew startServer``` and ```./gradlew stopServer``` 
+
+And for docker ```make run-docker``` to run it. It will map `9999` port from container to the host.
 
 open `localhost:9999/swagger`
 
@@ -28,6 +35,46 @@ Every response contains links to related resources or actions (like changing mod
 ## Default Data
 I am intentionally adding one offer to inital dao service, you can query it with id  `"6adbee8d-dd37-4828-8656-8404a66680ef"`.
 Or just query `http://localhost:9999/offers` to get list of offers.
+
+## JSON example
+You can use json snipped below when playing with endpoints which require payload like `POST` and `PUT` 
+
+```
+{
+  "id": "6adbee8d-dd37-4828-8656-8404a66680ef",
+  "name": "google home",
+  "price": {
+    "value": 49.124,
+    "currency": "GBP"
+  },
+  "moderationStatus": "APPROVED",
+  "startDate": "2018-02-27",
+  "expiryDate": "2019-02-27"
+}
+```
+## Offer Details
+
+*moderationStatus* - It is possible to mark offer as `APPROVED` `PENDING` or `REJECTED`. 
+*active* -  This field tells the client if the offer is currently `active` or not. It takes into considiration the moderationsStatus and start/expiry dates.
+*displayValue* - its a formatted version for display. 
+
+The rest is pretty standard 
+
+```
+  "offerDetails": {
+    "id": "6adbee8d-dd37-4828-8656-8404a66680ef",
+    "name": "iphone 6s",
+    "startDate": "2018-03-01",
+    "expiryDate": "2018-03-01",
+    "price": {
+      "value": 10.124,
+      "currency": "GBP",
+      "displayValue": 10.12
+    },
+    "moderationStatus": "APPROVED",
+    "active": false
+```
+
 
 
 ## Integration tests
