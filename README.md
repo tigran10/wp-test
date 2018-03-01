@@ -52,6 +52,29 @@ You can use json snipped below when playing with endpoints which require payload
   "expiryDate": "2019-02-27"
 }
 ```
+## Offer Details
+
+*moderationStatus* - It is possible to mark offer as `APPROVED` `PENDING` or `REJECTED`. 
+*active* -  This field tells the client if the offer is currently `active` or not. It takes into considiration the moderationsStatus and start/expiry dates.
+*displayValue* - its a formatted version for display. 
+
+The rest is pretty standard 
+
+```
+  "offerDetails": {
+    "id": "6adbee8d-dd37-4828-8656-8404a66680ef",
+    "name": "iphone 6s",
+    "startDate": "2018-03-01",
+    "expiryDate": "2018-03-01",
+    "price": {
+      "value": 10.124,
+      "currency": "GBP",
+      "displayValue": 10.12
+    },
+    "moderationStatus": "APPROVED",
+    "active": false
+```
+
 
 
 ## Integration tests
