@@ -49,6 +49,15 @@ public class OfferDetailsTest {
     public void isActiveTest() throws Exception {
         UniqueOfferId id = new UniqueOfferId("6adbee8d-dd37-4828-8656-8404a66680ef");
 
+        OfferDetails valid = start(id,
+                new Price(BigDecimal.valueOf(49.124), Currency.GBP),
+                "google home",
+                LocalDate.of(2016,1,27),
+                LocalDate.now().plusDays(1)).build();
+
+        assertThat(valid.isActive()).isTrue();
+
+
         OfferDetails expired = start(id,
                 new Price(BigDecimal.valueOf(49.124), Currency.GBP),
                 "google home",
@@ -57,11 +66,15 @@ public class OfferDetailsTest {
 
         assertThat(expired.isActive()).isFalse();
 
-        OfferDetails valid = start(id,
+
+        OfferDetails notStarted = start(id,
                 new Price(BigDecimal.valueOf(49.124), Currency.GBP),
                 "google home",
-                LocalDate.of(2016,1,27),
-                LocalDate.now().plusDays(1)).build();
+                LocalDate.now().plusDays(2),
+                LocalDate.now().plusDays(4)).build();
+
+        assertThat(notStarted.isActive()).isFalse();
+
 
         OfferDetails rejected = start(id,
                 new Price(BigDecimal.valueOf(49.124), Currency.GBP),

@@ -55,7 +55,9 @@ public class OfferDetails extends ReflectionEqualsHashCodeToString {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     public Boolean isActive() {
-        return LocalDate.now().isBefore(expiryDate) && moderationStatus == APPROVED;
+        return LocalDate.now().isBefore(expiryDate)
+                && LocalDate.now().isAfter(startDate)
+                && moderationStatus == APPROVED;
     }
 
     @JsonCreator
