@@ -19,8 +19,6 @@ class CrudE2eSpec extends FunSpec with StrictLogging with Configuration with Mat
   val readJson = readJsonFromDir("offers") _
   def readJsonFromDir(dir: String)(fileName: String): String = Source.fromInputStream(getClass().getResourceAsStream(s"/messages/${dir}/${fileName}.json")).mkString
 
-  implicit val patience = PatienceConfig(5 seconds, 1 second)
-  implicit val versionId = DateTime.now.getMillis
 
   before {
     Given("Server is running")
