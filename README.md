@@ -79,8 +79,15 @@ The rest is pretty standard
 
 ## Integration tests
 
-I will try to add some scala specs2 tests here, if you are reading the message then clearly i did not have time to finish it yet:) 
-But if you like the test so far, I will make sure they are in place before meeting.
+Integration tests are done with `spec2`. I like bdd-ing with cucumber as well, but this time i have chosen more geeky approach and went for `specs2`. You will need SBT to run the tests. Make sure you have `offerial` application up and running. 
+
+
+```
+cd offerial-e2e-tests
+sbt test
+```
+
+If your application is running under specific `host` and `port` you can change `application.conf` file in `resources` folder.
 
 ## Known issues
 ⛄️🤔❄️
