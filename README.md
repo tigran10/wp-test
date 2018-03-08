@@ -89,5 +89,12 @@ sbt test
 
 If your application is running under specific `host` and `port` you can change `application.conf` file in `resources` folder.
 
+If you dont want to install sbt and friends, you can run tests inside container, which has all cli tools ready there.
+
+```
+docker-compose -f docker-compose-test-local.yml run --rm e2e
+
+```
+
 ## Known issues
 ⛄️🤔❄️
