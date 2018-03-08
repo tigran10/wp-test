@@ -32,24 +32,39 @@ class CrudE2eSpec extends FunSpec with StrictLogging with Configuration with Mat
     Thread.sleep(1000L)
   }
 
-  describe("Offerial") {
+  describe("offerial api") {
 
-    it("should save offer create request correctly") {
-      createOffer(readJson("google")) |> responseShouldBeCreated |> responseContainsGoogle
+    it("should save offer request correctly") {
+      createOffer(readJson("google")) |> responseShouldBeCreated |> responseContainsGoogleId
+    }
+
+    it("should not found not existing id") {
+      getOffer("8608a4c5-f21b-41a6-8d73-3f8c467bc1c4") |> responseShouldBeNotFound
+    }
+
+    it("should get the offer correctly") {
+      getOffer("d9c3df7e-9b6e-46bd-897c-6bf39adf92ec")
+        .then().statusCode(200)
+        .and().body("offerDetails.id", equalTo("d9c3df7e-9b6e-46bd-897c-6bf39adf92ec"))
+        .and().body("offerDetails.name", equalTo("google home"))
+        .and().body("offerDetails.price.currency", equalTo("GBP"))
     }
 
     it("should update the offer") {
-      updateOffer("6adbee8d-dd37-4828-8656-8404a66680ef", readJson("iphone")) |> responseShouldBeOK
+      updateOffer("d9c3df7e-9b6e-46bd-897c-6bf39adf92ec", readJson("iphone"))
+        .then().statusCode(200)
+        .and().body("offerDetails.id", equalTo("d9c3df7e-9b6e-46bd-897c-6bf39adf92ec"))
+        .and().body("offerDetails.name", equalTo("iphone 8"))
+        .and().body("offerDetails.price.currency", equalTo("GBP"))
     }
 
     it("should delete the offer") {
-      deleteOffer("6adbee8d-dd37-4828-8656-8404a66680ef") |> responseShouldBeOK
+      deleteOffer("d9c3df7e-9b6e-46bd-897c-6bf39adf92ec") |> responseShouldBeOK
+      getOffer("d9c3df7e-9b6e-46bd-897c-6bf39adf92ec") |> responseShouldBeNotFound
     }
   }
 
-  def responseContainsGoogle(response: Response): Unit = response.then().body(
-    "uniqueId", equalTo("6adbee8d-dd37-4828-8656-8404a66680ef")
-  )
+  def responseContainsGoogleId(response: Response): Unit = response.then().body("uniqueId", equalTo("d9c3df7e-9b6e-46bd-897c-6bf39adf92ec"))
 
   def creatingOffersShouldBeCorrect() {
     withClue("this offer was updated, database should contain new offer") {

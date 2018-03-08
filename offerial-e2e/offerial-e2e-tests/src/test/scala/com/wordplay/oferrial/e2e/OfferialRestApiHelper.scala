@@ -16,7 +16,7 @@ trait OfferialRestApiHelper extends Configuration {
 
   def getOffer(id: String) =
     RestAssured.when()
-      .get(s"http://$offerialHost:$offerialPort/offer/$id")
+      .get(s"http://$offerialHost:$offerialPort/offers/$id")
 
 
   def createOffer(offer: String) =
