@@ -17,6 +17,7 @@ final class EndpointsWiring {
 
     void addTo(Environment environment) {
         environment.jersey().register(BaseEndpoint.class);
+        environment.jersey().register(HealthcheckResource.class);
         environment.jersey().register(offerResource);
     }
 

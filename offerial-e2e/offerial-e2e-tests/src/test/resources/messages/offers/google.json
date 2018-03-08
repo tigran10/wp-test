@@ -1,0 +1,11 @@
+{
+  "id": "6adbee8d-dd37-4828-8656-8404a66680ef",
+  "name": "google home",
+  "price": {
+    "value": 49.124,
+    "currency": "GBP"
+  },
+  "moderationStatus": "APPROVED",
+  "startDate": "2018-02-27",
+  "expiryDate": "2019-02-27"
+}
