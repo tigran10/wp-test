@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+  e2e:
+    image: hseeberger/scala-sbt
+    volumes:
+      - .:/usr/src/offerial/e2e
+      - /tmp/sbt:/root/.ivy2/cache
+    working_dir: /usr/src/offerial/e2e
+    network_mode: host
+    command: bash -c "sbt test"
+
